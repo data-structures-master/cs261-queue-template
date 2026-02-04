@@ -1,0 +1,280 @@
+name: Autograding Tests
+
+on:
+  push:
+  repository_dispatch:
+
+permissions:
+  checks: write
+  actions: read
+  contents: read
+
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyllist
+
+      # ---------- Individual Tests (Queue with sllist) ----------
+
+      - name: Instantiation
+        id: instantiation
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Instantiation
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_instantiation
+          timeout: 10
+          max-score: 1
+
+      - name: Initial_Size
+        id: initial_size
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Initial_Size
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_initial_size
+          timeout: 10
+          max-score: 1
+
+      - name: Has_Linked_List_Internal
+        id: has_linked_list_internal
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Has_Linked_List_Internal
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_has_linked_list_internal
+          timeout: 10
+          max-score: 1
+
+      - name: Enqueue_One_Internal
+        id: enqueue_one_internal
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Enqueue_One_Internal
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_enqueue_one_internal
+          timeout: 10
+          max-score: 1
+
+      - name: Enqueue_Two_Internal
+        id: enqueue_two_internal
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Enqueue_Two_Internal
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_enqueue_two_internal
+          timeout: 10
+          max-score: 1
+
+      - name: Enqueue_Three_Internal
+        id: enqueue_three_internal
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Enqueue_Three_Internal
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_enqueue_three_internal
+          timeout: 10
+          max-score: 1
+
+      - name: Dequeue_One
+        id: dequeue_one
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_One
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_one
+          timeout: 10
+          max-score: 1
+
+      - name: Dequeue_One_Internal
+        id: dequeue_one_internal
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_One_Internal
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_one_internal
+          timeout: 10
+          max-score: 1
+
+      - name: Dequeue_Two
+        id: dequeue_two
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_Two
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_two
+          timeout: 10
+          max-score: 1
+
+      - name: Dequeue_Two_Internal
+        id: dequeue_two_internal
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_Two_Internal
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_two_internal
+          timeout: 10
+          max-score: 1
+
+      - name: Dequeue_Three
+        id: dequeue_three
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_Three
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_three
+          timeout: 10
+          max-score: 1
+
+      - name: Dequeue_Three_Internal
+        id: dequeue_three_internal
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_Three_Internal
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_three_internal
+          timeout: 10
+          max-score: 1
+
+      - name: Empty
+        id: empty
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Empty
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_empty
+          timeout: 10
+          max-score: 1
+
+      - name: Not_Empty
+        id: not_empty
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Not_Empty
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_not_empty
+          timeout: 10
+          max-score: 1
+
+      - name: Empty_After_Dequeue
+        id: empty_after_dequeue
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Empty_After_Dequeue
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_empty_after_dequeue
+          timeout: 10
+          max-score: 1
+
+      - name: Not_Empty_Multiple
+        id: not_empty_multiple
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Not_Empty_Multiple
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_not_empty_multiple
+          timeout: 10
+          max-score: 1
+
+      - name: Size0
+        id: size0
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Size0
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_size0
+          timeout: 10
+          max-score: 1
+
+      - name: Dequeue_From_Empty
+        id: dequeue_from_empty
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_From_Empty
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_from_an_empty_queue
+          timeout: 10
+          max-score: 1
+
+      - name: Size_After_Enqueues
+        id: size_after_enqueues
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Size_After_Enqueues
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_size_after_enqueues
+          timeout: 10
+          max-score: 1
+
+      - name: Size_After_Dequeues
+        id: size_after_dequeues
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Size_After_Dequeues
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_size_after_dequeues
+          timeout: 10
+          max-score: 1
+
+      - name: Enqueue_Efficiency
+        id: enqueue_efficiency
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Enqueue_Efficiency
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_enqueue_efficiency
+          timeout: 120
+          max-score: 1
+
+      - name: Dequeue_Efficiency
+        id: dequeue_efficiency
+        uses: classroom-resources/autograding-command-grader@v1
+        with:
+          test-name: Dequeue_Efficiency
+          setup-command: ''
+          command: python3 -m unittest -v tests_autograder.tests_all.TestQueue.test_dequeue_efficiency
+          timeout: 120
+          max-score: 1
+
+      # ---------- Reporter ----------
+      - name: Autograding Reporter
+        uses: classroom-resources/autograding-grading-reporter@v1
+        env:
+          INSTANTIATION_RESULTS: "${{ steps.instantiation.outputs.result }}"
+          INITIAL_SIZE_RESULTS: "${{ steps.initial_size.outputs.result }}"
+          HAS_LINKED_LIST_INTERNAL_RESULTS: "${{ steps.has_linked_list_internal.outputs.result }}"
+          ENQUEUE_ONE_INTERNAL_RESULTS: "${{ steps.enqueue_one_internal.outputs.result }}"
+          ENQUEUE_TWO_INTERNAL_RESULTS: "${{ steps.enqueue_two_internal.outputs.result }}"
+          ENQUEUE_THREE_INTERNAL_RESULTS: "${{ steps.enqueue_three_internal.outputs.result }}"
+          DEQUEUE_ONE_RESULTS: "${{ steps.dequeue_one.outputs.result }}"
+          DEQUEUE_ONE_INTERNAL_RESULTS: "${{ steps.dequeue_one_internal.outputs.result }}"
+          DEQUEUE_TWO_RESULTS: "${{ steps.dequeue_two.outputs.result }}"
+          DEQUEUE_TWO_INTERNAL_RESULTS: "${{ steps.dequeue_two_internal.outputs.result }}"
+          DEQUEUE_THREE_RESULTS: "${{ steps.dequeue_three.outputs.result }}"
+          DEQUEUE_THREE_INTERNAL_RESULTS: "${{ steps.dequeue_three_internal.outputs.result }}"
+          EMPTY_RESULTS: "${{ steps.empty.outputs.result }}"
+          NOT_EMPTY_RESULTS: "${{ steps.not_empty.outputs.result }}"
+          EMPTY_AFTER_DEQUEUE_RESULTS: "${{ steps.empty_after_dequeue.outputs.result }}"
+          NOT_EMPTY_MULTIPLE_RESULTS: "${{ steps.not_empty_multiple.outputs.result }}"
+          SIZE0_RESULTS: "${{ steps.size0.outputs.result }}"
+          DEQUEUE_FROM_EMPTY_RESULTS: "${{ steps.dequeue_from_empty.outputs.result }}"
+          SIZE_AFTER_ENQUEUES_RESULTS: "${{ steps.size_after_enqueues.outputs.result }}"
+          SIZE_AFTER_DEQUEUES_RESULTS: "${{ steps.size_after_dequeues.outputs.result }}"
+          ENQUEUE_EFFICIENCY_RESULTS: "${{ steps.enqueue_efficiency.outputs.result }}"
+          DEQUEUE_EFFICIENCY_RESULTS: "${{ steps.dequeue_efficiency.outputs.result }}"
+        with:
+          runners: instantiation,initial_size,has_linked_list_internal,enqueue_one_internal,enqueue_two_internal,enqueue_three_internal,dequeue_one,dequeue_one_internal,dequeue_two,dequeue_two_internal,dequeue_three,dequeue_three_internal,empty,not_empty,empty_after_dequeue,not_empty_multiple,size0,dequeue_from_empty,size_after_enqueues,size_after_dequeues,enqueue_efficiency,dequeue_efficiency
